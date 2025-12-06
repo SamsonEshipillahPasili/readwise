@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: app
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,6 +12,7 @@ services:
     volumes:
       - ./:/app
   db:
+    container_name: postgresql
     image: postgres:18
     restart: always
     shm_size: 128mb
