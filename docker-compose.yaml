@@ -5,3 +5,28 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8000:8000
+    depends_on:
+     db:
+       condition: service_healthy
+    volumes:
+      - ./:/app
+  db:
+    image: postgres:18
+    restart: always
+    shm_size: 128mb
+    volumes:
+      - db_data:/var/lib/postgresql
+    environment:
+      POSTGRES_PASSWORD: SuperSecret123
+      POSTGRES_USER: readwise
+      POSTGRES_DB: readwise_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U readwise -d readwise_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+volumes: 
+  db_data: {}
+

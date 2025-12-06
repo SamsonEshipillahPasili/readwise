@@ -8,5 +8,7 @@ ADD . .
 
 RUN uv sync --locked
 
+EXPOSE 8000
+
 CMD ["sh", "run.sh"]
 
