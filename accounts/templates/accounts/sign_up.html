@@ -1,21 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'accounts/base.html' %}
 
-{% block title %}
-Sign Up
-{% endblock title %}
+{% block title %} Sign Up {% endblock title %}
 
-{% block body %} 
+{% block accounts_title %} Create an Account {% endblock accounts_title %}
 
-<nav class="navbar bg-primary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <i class="bi bi-book"></i>
-      <span class="ms-2">ReadWise</span>
-    </a>
-  </div>
-</nav>
-
-<h2 class="text-center mt-5">Create an Account</h2>
+{% block accounts_body %} 
 
 <div class="d-flex justify-content-center mt-2">
     <div style="width: 100%; max-width: 400px;">
@@ -51,4 +40,4 @@ Sign Up
     </div>
 </div>
 
-{% endblock body %}
+{% endblock accounts_body %}
