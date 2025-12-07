@@ -1,3 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
+class SignInTemplateView(TemplateView):
+    template_name = 'accounts/sign_in.html'

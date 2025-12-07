@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sign In
+{% endblock title %}
+
+{% block body %} 
+
+<nav class="navbar bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-book"></i>
+      <span class="ms-2">ReadWise</span>
+    </a>
+  </div>
+</nav>
+
+<h2 class="text-center mt-5">Sign In</h2>
+
+<div class="d-flex justify-content-center mt-2">
+    <div style="width: 100%; max-width: 400px;">
+        
+        <form class="p-4 border rounded">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="remember">
+                <label class="form-check-label" for="remember">Remember Me</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+        </form>
+
+        <div class="d-flex justify-content-between mt-3 px-1">
+            <a href="#">Forgot Password?</a>
+            <a href="#">Don’t have an account? Register</a>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock body %}
