@@ -7,4 +7,5 @@ urlpatterns = [
     path('sign-in', views.SignInTemplateView.as_view(), name='sign_in'),
     path('sign-up', views.SignUpTemplateView.as_view(), name='sign_up'),
     path('forgot-password', views.ForgotPasswordTemplateView.as_view(), name='forgot_password'),
+    path('reset-password', views.ResetPasswordTemplateView.as_view(), name='reset_password'),
 ]

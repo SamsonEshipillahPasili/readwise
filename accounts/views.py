@@ -11,3 +11,6 @@ class SignUpTemplateView(TemplateView):
 
 class ForgotPasswordTemplateView(TemplateView):
     template_name = 'accounts/forgot_password.html'
+
+class ResetPasswordTemplateView(TemplateView):
+    template_name = 'accounts/reset_password.html'
