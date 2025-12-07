@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+
+    <nav class="navbar bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+            <i class="bi bi-book"></i>
+            <span class="ms-2">ReadWise</span>
+            </a>
+        </div>
+    </nav>
+
+    <h2 class="text-center mt-5">
+        {% block accounts_title %}{% endblock accounts_title %}
+    </h2>
+
+    {% block accounts_body %} {%endblock accounts_body %}
+
+{% endblock body %}
