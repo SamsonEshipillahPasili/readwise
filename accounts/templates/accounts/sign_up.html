@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sign Up
+{% endblock title %}
+
+{% block body %} 
+
+<nav class="navbar bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-book"></i>
+      <span class="ms-2">ReadWise</span>
+    </a>
+  </div>
+</nav>
+
+<h2 class="text-center mt-5">Create an Account</h2>
+
+<div class="d-flex justify-content-center mt-2">
+    <div style="width: 100%; max-width: 400px;">
+        <form class="p-4 border rounded">
+            
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username">
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm_password">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+
+        </form>
+
+        <div class="d-flex justify-content-center mt-3 px-1">
+            <a href="/login">Already have an account? Sign In</a>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
