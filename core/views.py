@@ -9,3 +9,7 @@ class ShelvesTemplateView(TemplateView):
 
 class WishlistTemplateView(TemplateView):
     template_name = 'core/wishlist.html'
+
+class FriendsTemplateView(TemplateView):
+    template_name = 'core/friends.html'
+
