@@ -6,3 +6,6 @@ class BrowseTemplateView(TemplateView):
 
 class ShelvesTemplateView(TemplateView):
     template_name = 'core/shelves.html'
+
+class WishlistTemplateView(TemplateView):
+    template_name = 'core/wishlist.html'
