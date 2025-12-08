@@ -13,3 +13,6 @@ class WishlistTemplateView(TemplateView):
 class FriendsTemplateView(TemplateView):
     template_name = 'core/friends.html'
 
+class ChatTemplateView(TemplateView):
+    template_name = 'core/chat.html'
+
