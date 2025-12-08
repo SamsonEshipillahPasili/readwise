@@ -3,3 +3,6 @@ from django.views.generic import TemplateView
 
 class BrowseTemplateView(TemplateView):
     template_name = 'core/browse.html'
+
+class ShelvesTemplateView(TemplateView):
+    template_name = 'core/shelves.html'
