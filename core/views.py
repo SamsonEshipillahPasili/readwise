@@ -19,3 +19,6 @@ class ChatTemplateView(TemplateView):
 class ProfileTemplateView(TemplateView):
     template_name = 'core/profile.html'
 
+class SettingsTemplateView(TemplateView):
+    template_name = 'core/settings.html'
+
