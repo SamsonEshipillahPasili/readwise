@@ -9,4 +9,5 @@ urlpatterns = [
     path('wishlist', views.WishlistTemplateView.as_view(), name='wishlist'),
     path('friends', views.FriendsTemplateView.as_view(), name='friends'),
     path('chat', views.ChatTemplateView.as_view(), name='chat'),
+    path('profile', views.ProfileTemplateView.as_view(), name='profile'),
 ]

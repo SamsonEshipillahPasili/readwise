@@ -16,3 +16,6 @@ class FriendsTemplateView(TemplateView):
 class ChatTemplateView(TemplateView):
     template_name = 'core/chat.html'
 
+class ProfileTemplateView(TemplateView):
+    template_name = 'core/profile.html'
+
