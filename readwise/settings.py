@@ -112,8 +112,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Auth Config
 AUTH_USER_MODEL = 'accounts.ReadWiseUser'
 
 LOGIN_URL = '/accounts/sign-in'
 
 LOGIN_REDIRECT_URL = '/browse'
+
+LOGOUT_REDIRECT_URL = '/accounts/sign-in'
