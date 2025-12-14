@@ -115,3 +115,5 @@ STATIC_URL = 'static/'
 AUTH_USER_MODEL = 'accounts.ReadWiseUser'
 
 LOGIN_URL = '/accounts/sign-in'
+
+LOGIN_REDIRECT_URL = '/browse'
