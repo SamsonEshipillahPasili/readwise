@@ -1,8 +1,9 @@
 from typing import Any
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class BrowseTemplateView(TemplateView):
+class BrowseTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'core/browse.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -11,7 +12,7 @@ class BrowseTemplateView(TemplateView):
         return ctx
 
 
-class ShelvesTemplateView(TemplateView):
+class ShelvesTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'core/shelves.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -19,7 +20,7 @@ class ShelvesTemplateView(TemplateView):
         ctx['menu'] = 'shelves'
         return ctx
 
-class WishlistTemplateView(TemplateView):
+class WishlistTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'core/wishlist.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -27,7 +28,7 @@ class WishlistTemplateView(TemplateView):
         ctx['menu'] = 'wishlist'
         return ctx
 
-class FriendsTemplateView(TemplateView):
+class FriendsTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'core/friends.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -35,7 +36,7 @@ class FriendsTemplateView(TemplateView):
         ctx['menu'] = 'friends'
         return ctx
 
-class ChatTemplateView(TemplateView):
+class ChatTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'core/chat.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -43,7 +44,7 @@ class ChatTemplateView(TemplateView):
         ctx['menu'] = 'chat'
         return ctx
 
-class ProfileTemplateView(TemplateView):
+class ProfileTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'core/profile.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -51,7 +52,7 @@ class ProfileTemplateView(TemplateView):
         ctx['menu'] = 'profile'
         return ctx
 
-class SettingsTemplateView(TemplateView):
+class SettingsTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'core/settings.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
