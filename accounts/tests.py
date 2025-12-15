@@ -1,5 +1,4 @@
 from django.test import TestCase
-from . import managers
 from . import models
 from faker import Faker
 
