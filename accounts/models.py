@@ -20,6 +20,6 @@ class CreateAccountRequest(TimestampedModel):
     last_name = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
     email = models.EmailField()
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=255)
     token = models.UUIDField(default=uuid4)
     is_token_used = models.BooleanField(default=False)
