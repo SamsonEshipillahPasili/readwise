@@ -8,6 +8,8 @@ from django.utils import timezone
 
 from readwise.models import TimestampedModel
 
+from .managers import CreateAccountRequestManager
+
 class ReadWiseUser(AbstractUser):
     """
     This is the custom user model for all ReadWise users.
@@ -26,6 +28,8 @@ class CreateAccountRequest(TimestampedModel):
     password = models.CharField(max_length=255)
     token = models.UUIDField(default=uuid4)
     is_token_used = models.BooleanField(default=False)
+
+    objects = CreateAccountRequestManager()
 
     def is_valid(self) -> bool:
         """
