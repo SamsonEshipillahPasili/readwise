@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -115,8 +117,8 @@ STATIC_URL = 'static/'
 # Auth Config
 AUTH_USER_MODEL = 'accounts.ReadWiseUser'
 
-LOGIN_URL = '/accounts/sign-in'
+LOGIN_URL = reverse_lazy('accounts:sign_in')
 
-LOGIN_REDIRECT_URL = '/browse'
+LOGIN_REDIRECT_URL = reverse_lazy('core:browse')
 
-LOGOUT_REDIRECT_URL = '/accounts/sign-in'
+LOGOUT_REDIRECT_URL = reverse_lazy('accounts:sign_in')
