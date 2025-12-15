@@ -122,3 +122,5 @@ LOGIN_URL = reverse_lazy('accounts:sign_in')
 LOGIN_REDIRECT_URL = reverse_lazy('core:browse')
 
 LOGOUT_REDIRECT_URL = reverse_lazy('accounts:sign_in')
+
+SIGN_UP_TOKEN_EXPIRATION_DURATION_SECS = 60 * 30 
