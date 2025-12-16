@@ -49,4 +49,17 @@ class CreateAccountRequest(TimestampedModel):
             return False
         
         return True
+    
+    def mark_used(self) -> None:
+        """
+        Mark this request as used.
+        """
+
+        # token is marked as used already.
+        if self.is_token_used:
+            return
+
+        # mark the token as used.
+        self.is_token_used = True
+        self.save(update_fields=['is_token_used'])
 

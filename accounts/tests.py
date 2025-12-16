@@ -22,3 +22,33 @@ class CreateAccountRequestManagerTest(TestCase):
         self.assertEqual(request.username, saved_request.username)
         self.assertEqual(request.email, saved_request.email)
         self.assertEqual(request.password, saved_request.password)
+
+
+class CreateAccountRequestTest(TestCase):
+
+    def setUp(self) -> None:
+        self.fake = Faker()
+
+        # create a request to be used for testing.
+        self.request = models.CreateAccountRequest.objects.create_request(
+            first_name=self.fake.first_name(),
+            last_name=self.fake.last_name(),
+            username=self.fake.user_name(),
+            email=self.fake.email(),
+            password=self.fake.password(10)
+        )
+
+    def test_default_validity(self) -> None:
+        # the default factory produces a valid request.
+        self.assertTrue(self.request.is_valid())
+    
+    def test_mark_used(self) -> None:
+        # mark the request as used.
+        self.request.mark_used()
+
+        # ensure the model is synced with db
+        self.request.refresh_from_db()
+
+        # check that the request is invalid.
+        self.assertFalse(self.request.is_valid())
+    
