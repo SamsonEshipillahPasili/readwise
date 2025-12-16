@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.contrib.auth.views import LoginView, LogoutView
+
+from .forms import CreateAccountRequestForm
 
 class SignInView(LoginView):
     template_name = 'accounts/sign_in.html'
@@ -8,8 +10,10 @@ class SignInView(LoginView):
 class SignOutView(LogoutView):
     ...
 
-class SignUpTemplateView(TemplateView):
+class SignUpView(FormView):
     template_name = 'accounts/sign_up.html'
+    form_class = CreateAccountRequestForm
+    success_url = '/accounts/sign-up'
 
 
 class ForgotPasswordTemplateView(TemplateView):
