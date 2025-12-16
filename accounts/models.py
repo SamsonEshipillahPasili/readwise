@@ -36,6 +36,8 @@ class CreateAccountRequest(TimestampedModel):
         Checks whether the request is valid. A valid request satisfies the following:-
         - The token hasn't been used before.
         - The token hasn't expired.
+
+        :return: Whether the current request is valid.
         """
 
         # Token has been used - invalid.
