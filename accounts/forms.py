@@ -1,4 +1,5 @@
 from django import forms
+from .models import ReadWiseUser
 
 class CreateAccountRequestForm(forms.Form):
     first_name = forms.CharField(max_length=255)
@@ -22,4 +23,11 @@ class CreateAccountRequestForm(forms.Form):
             raise forms.ValidationError('The passwords do not match.')
         
         return confirm_password
+    
+    def clean_email(self) -> str:
+        email = self.cleaned_data.get('email', '')
 
+        if ReadWiseUser.objects.filter(email=email).exists():
+            raise forms.ValidationError('This email is taken.')
+
+        return email
