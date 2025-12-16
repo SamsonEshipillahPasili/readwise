@@ -1,4 +1,8 @@
+import datetime as dt
+
 from django.test import TestCase
+from django.utils import timezone
+
 from . import models
 from faker import Faker
 
@@ -52,3 +56,10 @@ class CreateAccountRequestTest(TestCase):
         # check that the request is invalid.
         self.assertFalse(self.request.is_valid())
     
+    def test_expiration(self) -> None:
+        # set the created_at to 3 days in the past.
+        self.request.created_at = timezone.now() - dt.timedelta(days=3) 
+        self.request.save(update_fields=['created_at'])
+
+        # the request should be invalid.
+        self.assertFalse(self.request.is_valid())
