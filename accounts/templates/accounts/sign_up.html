@@ -8,36 +8,62 @@
 
 <div class="d-flex justify-content-center mt-2">
     <div style="width: 100%; max-width: 400px;">
+
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                Please correct the errors below.
+            </div>
+        {% endif %}
+
         <form class="p-4 border rounded" method='post' action="{% url 'accounts:sign_up' %}">
             {% csrf_token %}
+
             <div class="mb-3">
                 <label for="first_name" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="first_name">
+                <input type="text" class="form-control" id="first_name" name="first_name">
+                {% for error in form.errors.first_name %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
             </div>
 
             <div class="mb-3">
-                <label for="first_name" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="first_name">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last_name" name="last_name">
+                {% for error in form.errors.last_name %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
             </div>
 
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username">
+                <input type="text" class="form-control" id="username" name="username">
+                {% for error in form.errors.username %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" name="email">
+                {% for error in form.errors.email %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" name="password">
+                {% for error in form.errors.password %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
             </div>
 
             <div class="mb-3">
                 <label for="confirm_password" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirm_password">
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                {% for error in form.errors.confirm_password %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Sign Up</button>
