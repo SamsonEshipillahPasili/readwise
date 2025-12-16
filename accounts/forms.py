@@ -31,3 +31,11 @@ class CreateAccountRequestForm(forms.Form):
             raise forms.ValidationError('This email is taken.')
 
         return email
+    
+    def clean_username(self) -> str:
+        username = self.cleaned_data.get('username', '')
+        
+        if ReadWiseUser.objects.filter(username=username).exists():
+            raise forms.ValidationError('Username is taken.')
+        
+        return username
