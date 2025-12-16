@@ -9,6 +9,7 @@
 <div class="d-flex justify-content-center mt-2">
     <div style="width: 100%; max-width: 400px;">
         <form class="p-4 border rounded">
+            {% csrf_token %}
             <div class="mb-3">
                 <label for="first_name" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="first_name">
