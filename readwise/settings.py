@@ -124,3 +124,9 @@ LOGIN_REDIRECT_URL = reverse_lazy('core:browse')
 LOGOUT_REDIRECT_URL = reverse_lazy('accounts:sign_in')
 
 SIGN_UP_TOKEN_EXPIRATION_DURATION_SECS = 60 * 30 
+
+# Site Config
+BASE_URL = 'http://localhost:8000'
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

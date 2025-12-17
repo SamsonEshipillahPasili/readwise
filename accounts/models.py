@@ -5,6 +5,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.conf import settings
 
 from readwise.models import TimestampedModel
 
@@ -57,11 +59,33 @@ class CreateAccountRequest(TimestampedModel):
         Mark this request as used.
         """
 
-        # token is marked as used already.
+       # token is marked as used already.
         if self.is_token_used:
             return
 
         # mark the token as used.
         self.is_token_used = True
         self.save(update_fields=['is_token_used'])
+    
+    def send_registration_email(self) -> None:
+        """
+        Send registration email.
+        """
+        base_url = settings.BASE_URL
+        signup_url = f"{base_url}/accounts/complete-signup/{self.token}"
 
+        message = (
+            "Welcome to ReadWise!\n\n"
+            "Thanks for signing up. To complete your registration, please click "
+            "the link below:\n\n"
+            f"{signup_url}\n\n"
+            "If you did not request this account, you can safely ignore this email.\n\n"
+            "— The ReadWise Team"
+        )
+
+        send_mail(
+            subject='ReadWise Sign Up',
+            from_email='admin@readwise.com',
+            message=message,
+            recipient_list=[self.email]
+        )
