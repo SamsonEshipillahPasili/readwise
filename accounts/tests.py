@@ -1,11 +1,14 @@
 import datetime as dt
 
+from faker import Faker
+
 from django.test import TestCase
 from django.utils import timezone
+from django.urls import reverse
+from django.core import mail
 
 from . import models
 from .forms import CreateAccountRequestForm
-from faker import Faker
 
 class CreateAccountRequestManagerTest(TestCase):
 
@@ -140,4 +143,50 @@ class CreateAccountRequestFormTest(TestCase):
             form.errors["username"][0],
             "Username is taken."
         )
+
+class SignUpViewTests(TestCase):
+
+    def test_signup_page_loads(self):
+        response = self.client.get(reverse('accounts:sign_up'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'accounts/sign_up.html')
+        self.assertContains(response, '<form')
+    
+    def test_valid_signup_creates_request(self):
+        payload = {
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'username': 'johndoe',
+            'email': 'john@example.com',
+            'password': 'StrongPass123',
+            'confirm_password': 'StrongPass123'
+        }
+
+        response = self.client.post(reverse('accounts:sign_up'), data=payload)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(models.CreateAccountRequest.objects.count(), 1)
+
+        req = models.CreateAccountRequest.objects.first()
+        self.assertIsNotNone(req)
+        assert req is not None
+        self.assertEqual(req.email, 'john@example.com')
+        self.assertEqual(req.username, 'johndoe')
+    
+    def test_signup_sends_email(self):
+        payload = {
+            'first_name': 'Jane',
+            'last_name': 'Doe',
+            'username': 'janedoe',
+            'email': 'jane@example.com',
+            'password': 'StrongPass123',
+            'confirm_password': 'StrongPass123',
+        }
+
+        self.client.post('/accounts/sign-up', data=payload)
+
+        self.assertEqual(len(mail.outbox), 1)
+
+        email = mail.outbox[0]
+        self.assertEqual(email.subject, 'ReadWise Sign Up')
+        self.assertIn('jane@example.com', email.to)
 
