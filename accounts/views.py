@@ -7,14 +7,10 @@ from .forms import CreateAccountRequestForm
 class SignInView(LoginView):
     template_name = 'accounts/sign_in.html'
 
-class SignOutView(LogoutView):
-    ...
-
 class SignUpView(FormView):
     template_name = 'accounts/sign_up.html'
     form_class = CreateAccountRequestForm
     success_url = '/accounts/sign-up'
-
 
 class ForgotPasswordTemplateView(TemplateView):
     template_name = 'accounts/forgot_password.html'
