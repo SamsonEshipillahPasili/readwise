@@ -1,0 +1,21 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %} Sign Up Started {% endblock title %}
+
+{% block accounts_title %} Complete Sign Up {% endblock accounts_title %}
+
+{% block accounts_body %} 
+
+<div class="d-flex justify-content-center mt-2">
+    <div style="width: 100%; max-width: 400px;">
+
+        <div class="alert alert-info p-4 mb-4" role="alert">
+            <p class="mb-4">Thank you for starting the sign-up process! Please check your email for a confirmation link to complete your registration.</p>
+        </div>
+
+        <a type="submit" href="{% url 'accounts:sign_in' %}" class="btn btn-primary w-100">Back to Home</a>
+
+    </div>
+</div>
+
+{% endblock accounts_body %}

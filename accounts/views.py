@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, FormView
 from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
 
 from .forms import CreateAccountRequestForm
 from .models import CreateAccountRequest
@@ -10,7 +11,7 @@ class SignInView(LoginView):
 class SignUpView(FormView):
     template_name = 'accounts/sign_up.html'
     form_class = CreateAccountRequestForm
-    success_url = '/accounts/sign-up'
+    success_url = reverse_lazy('accounts:sign_up_started')
 
     def form_valid(self, form):
         # Save the registration request to db.
@@ -32,3 +33,6 @@ class ForgotPasswordTemplateView(TemplateView):
 
 class ResetPasswordTemplateView(TemplateView):
     template_name = 'accounts/reset_password.html'
+
+class SignUpStartedView(TemplateView):
+    template_name = 'accounts/sign_up_started.html'
