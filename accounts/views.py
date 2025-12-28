@@ -1,9 +1,18 @@
+import uuid
+import logging
+
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, FormView
+from django.views import View
 from django.contrib.auth.views import LoginView
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
+from django.contrib.messages import error, success
+from django.contrib.auth import login
 
 from .forms import CreateAccountRequestForm
 from .models import CreateAccountRequest
+
+logger = logging.getLogger(__name__)
 
 class SignInView(LoginView):
     template_name = 'accounts/sign_in.html'
@@ -36,3 +45,27 @@ class ResetPasswordTemplateView(TemplateView):
 
 class SignUpStartedView(TemplateView):
     template_name = 'accounts/sign_up_started.html'
+
+
+class CompleteSignUpView(View):
+    def get(self, req: HttpRequest, token: uuid.UUID) -> HttpResponse:
+        # retrieve the request
+        request = CreateAccountRequest.objects.filter(token=token).first()
+
+        # assert the request exists.
+        if not request:
+            error(req, "The link is invalid or has expired")
+            return HttpResponseRedirect(reverse('accounts:sign_in'))
+
+        # attempt to create an account 
+        try:
+            user = request.create_account()
+        except ValueError as e:
+            error(req, "The link is invalid or has expired.")
+            logger.exception(e)
+            return HttpResponseRedirect(reverse('accounts:sign_in'))
+        
+        # log the user in automatically
+        success(req, 'Sign up was successful!')
+        login(req, user)
+        return HttpResponseRedirect(reverse('core:browse'))

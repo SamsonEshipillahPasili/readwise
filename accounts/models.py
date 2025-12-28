@@ -33,6 +33,38 @@ class CreateAccountRequest(TimestampedModel):
 
     objects = CreateAccountRequestManager()
 
+    def create_account(self) -> ReadWiseUser:
+        """
+        Creates a ``ReadWise`` account from the registration request.
+        Throws a `ValueError` if the request is invalid or another user
+        has been saved with the email/username.
+        """
+
+        # assert request validity.
+        if not self.is_valid():
+            raise ValueError('The request has expired or is invalid')
+
+        # assert the username uniqueness
+        if ReadWiseUser.objects.filter(username=self.username).exists():
+            raise ValueError(f'The username: {self.username} is taken.')
+        
+        # assert email uniqueness
+        if ReadWiseUser.objects.filter(email=self.email).exists():
+            raise ValueError(f'The email: {self.email} is taken.')
+        
+        # mark the as used.
+        self.mark_used()
+        
+        # create the readwise user
+        return ReadWiseUser.objects.create(
+            email=self.email,
+            password=self.password,
+            first_name=self.first_name,
+            last_name=self.last_name,
+            username=self.username
+        )
+
+
     def is_valid(self) -> bool:
         """
         Checks whether the request is valid. A valid request satisfies the following:-

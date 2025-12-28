@@ -11,4 +11,5 @@ urlpatterns = [
     path('forgot-password', views.ForgotPasswordTemplateView.as_view(), name='forgot_password'),
     path('reset-password', views.ResetPasswordTemplateView.as_view(), name='reset_password'),
     path('sign-up-started', views.SignUpStartedView.as_view(), name='sign_up_started'),
+    path('complete-signup/<uuid:token>', views.CompleteSignUpView.as_view(), name='complete_signup'),
 ]
