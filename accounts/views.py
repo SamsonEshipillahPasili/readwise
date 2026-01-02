@@ -4,7 +4,10 @@ import logging
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, FormView
 from django.views import View
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import (
+    LoginView, PasswordResetView, PasswordResetDoneView,
+    PasswordResetConfirmView, PasswordResetCompleteView
+)
 from django.urls import reverse, reverse_lazy
 from django.contrib.messages import error, success
 from django.contrib.auth import login
@@ -37,11 +40,24 @@ class SignUpView(FormView):
 
         return super().form_valid(form)
 
-class ForgotPasswordTemplateView(TemplateView):
-    template_name = 'accounts/forgot_password.html'
-
-class ResetPasswordTemplateView(TemplateView):
+class AccountsResetPasswordView(PasswordResetView):
     template_name = 'accounts/reset_password.html'
+    success_url = reverse_lazy('accounts:reset_password_done')
+
+    # email configuration
+    from_email = 'inotifiers@gmail.com'
+    email_template_name = 'accounts/reset_password_email.txt'
+    subject_template_name = 'accounts/reset_password_subject.txt'
+
+class AccountsResetPasswordDoneView(PasswordResetDoneView):
+    template_name = 'accounts/reset_password_done.html'
+
+class AccountsResetPasswordConfirmView(PasswordResetConfirmView):
+    template_name = 'accounts/reset_password_confirm.html'
+    success_url = reverse_lazy('accounts:reset_password_complete')
+
+class AccountsResetPasswordCompleteView(PasswordResetCompleteView):
+    template_name = 'accounts/reset_password_complete.html'
 
 class SignUpStartedView(TemplateView):
     template_name = 'accounts/sign_up_started.html'
