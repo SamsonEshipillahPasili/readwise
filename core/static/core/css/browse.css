@@ -1,5 +1,12 @@
 .book-card {
     width: 150px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.book-card:hover {
+    background-color: lightblue;
 }
 
 .book-cover {
