@@ -1,6 +1,40 @@
 {% extends 'core/base.html' %}
 
-{% block body %} 
-    <h3> Browse Coming Soon </h3>
-{% endblock body %}
+{% load static %}
 
+{% load static %}
+
+{%  block head %}
+    <link href="{% static 'core/css/browse.css' %}" rel="stylesheet" />
+{%  endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Browse Books</h1>
+    <p>Explore our collection of books.</p>
+
+    <div class="d-flex gap-4">
+        <div class="book-card">
+            <img src="{% static 'core/img/book-01.png' %}" class="img-thumbnail d-block mx-auto book-cover" alt="Book Cover">
+            <div>
+                <h5 class="text-center fw-bold mt-2 book-title">Echoes of Tomorrow Is much longer</h5>
+                <p class="text-center book-category">Science Fiction</p>
+            </div>
+        </div>
+        <div class="book-card">
+            <img src="{% static 'core/img/book-01.png' %}" class="img-thumbnail d-block mx-auto book-cover" alt="Book Cover">
+            <div>
+                <h5 class="text-center fw-bold mt-2 book-title">Echoes of Tomorrow Is much longer</h5>
+                <p class="text-center book-category">Science Fiction</p>
+            </div>
+        </div>
+        <div class="book-card">
+            <img src="{% static 'core/img/book-01.png' %}" class="img-thumbnail d-block mx-auto book-cover" alt="Book Cover">
+            <div>
+                <h5 class="text-center fw-bold mt-2 book-title">Echoes of Tomorrow Is much longer</h5>
+                <p class="text-center book-category">Science Fiction</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

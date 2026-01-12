@@ -1,0 +1,13 @@
+.book-card {
+    width: 150px;
+}
+
+.book-cover {
+    width: 150px;
+    height: 200px;
+}
+
+.book-title,
+.book-category {
+    font-size: .9rem;
+}
