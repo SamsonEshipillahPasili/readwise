@@ -31,14 +31,6 @@ class WishlistTemplateView(LoginRequiredMixin, TemplateView):
         ctx['menu'] = 'wishlist'
         return ctx
 
-class FriendsTemplateView(LoginRequiredMixin, TemplateView):
-    template_name = 'core/friends.html'
-
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        ctx = super().get_context_data(**kwargs)
-        ctx['menu'] = 'friends'
-        return ctx
-
 class ProfileTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'core/profile.html'
 
