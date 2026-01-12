@@ -2,8 +2,13 @@
 
 {% block body %}
 <div class="container mt-4">
-    <h1>Shelves</h1>
-    <p>Organize your books into shelves. Here are some default shelves to get you started.</p>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h1>Shelves</h1>
+            <p class="mb-0">Organize your books into shelves. Here are some default shelves to get you started.</p>
+        </div>
+        <button class="btn btn-primary mt-5">Add New Shelf</button>
+    </div>
 
     <div class="card">
         <div class="card-header">
@@ -15,36 +20,44 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Currently Reading</td>
                         <td>Books you are actively reading.</td>
+                        <td><button class="btn btn-success btn-sm">Open</button></td>
                     </tr>
                     <tr>
                         <td>Want to Read</td>
                         <td>Books you plan to read in the future.</td>
+                        <td><button class="btn btn-success btn-sm">Open</button></td>
                     </tr>
                     <tr>
                         <td>Read</td>
                         <td>Books you have already finished.</td>
+                        <td><button class="btn btn-success btn-sm">Open</button></td>
                     </tr>
                     <tr>
                         <td>Favorites</td>
                         <td>Your all-time favorite books.</td>
+                        <td><button class="btn btn-success btn-sm">Open</button></td>
                     </tr>
                     <tr>
                         <td>Science Fiction</td>
                         <td>A collection for all your sci-fi adventures.</td>
+                        <td><button class="btn btn-success btn-sm">Open</button></td>
                     </tr>
                     <tr>
                         <td>Fantasy</td>
                         <td>Enter magical realms with these fantasy books.</td>
+                        <td><button class="btn btn-success btn-sm">Open</button></td>
                     </tr>
                     <tr>
                         <td>Non-Fiction</td>
                         <td>For when you want to learn something new.</td>
+                        <td><button class="btn btn-success btn-sm">Open</button></td>
                     </tr>
                 </tbody>
             </table>
