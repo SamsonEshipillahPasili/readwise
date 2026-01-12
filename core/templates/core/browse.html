@@ -2,8 +2,6 @@
 
 {% load static %}
 
-{% load static %}
-
 {%  block head %}
     <link href="{% static 'core/css/browse.css' %}" rel="stylesheet" />
 {%  endblock %}
@@ -13,28 +11,25 @@
     <h1>Browse Books</h1>
     <p>Explore our collection of books.</p>
 
-    <div class="d-flex gap-4">
-        <div class="book-card">
-            <img src="{% static 'core/img/book-01.png' %}" class="img-thumbnail d-block mx-auto book-cover" alt="Book Cover">
-            <div>
-                <h5 class="text-center fw-bold mt-2 book-title">Echoes of Tomorrow Is much longer</h5>
-                <p class="text-center book-category">Science Fiction</p>
+    <div class="mb-4">
+        <form class="d-flex" method="get">
+            <input class="form-control me-2" type="search" name="q" placeholder="Search by name or category" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="row">
+        {% for i in "x"|ljust:17 %}
+        <div class="col-md-2 mb-4">
+            <div class="book-card">
+                <img src="{% static 'core/img/book-01.png' %}" class="img-thumbnail d-block mx-auto book-cover" alt="Book Cover">
+                <div>
+                    <h5 class="text-center fw-bold mt-2 book-title">Sample Book Title</h5>
+                    <p class="text-center book-category">Test Category</p>
+                </div>
             </div>
         </div>
-        <div class="book-card">
-            <img src="{% static 'core/img/book-01.png' %}" class="img-thumbnail d-block mx-auto book-cover" alt="Book Cover">
-            <div>
-                <h5 class="text-center fw-bold mt-2 book-title">Echoes of Tomorrow Is much longer</h5>
-                <p class="text-center book-category">Science Fiction</p>
-            </div>
-        </div>
-        <div class="book-card">
-            <img src="{% static 'core/img/book-01.png' %}" class="img-thumbnail d-block mx-auto book-cover" alt="Book Cover">
-            <div>
-                <h5 class="text-center fw-bold mt-2 book-title">Echoes of Tomorrow Is much longer</h5>
-                <p class="text-center book-category">Science Fiction</p>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock body %}
