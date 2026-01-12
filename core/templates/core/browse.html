@@ -19,7 +19,7 @@
     </div>
 
     <div class="row">
-        {% for i in "x"|ljust:17 %}
+        {% for i in ""|ljust:17 %}
         <div class="col-md-2 mb-4">
             <div class="book-card">
                 <img src="{% static 'core/img/book-01.png' %}" class="img-thumbnail d-block mx-auto book-cover" alt="Book Cover">
@@ -31,5 +31,19 @@
         </div>
         {% endfor %}
     </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 {% endblock body %}
