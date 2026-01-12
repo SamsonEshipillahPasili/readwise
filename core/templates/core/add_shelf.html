@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h1>Add Shelf</h1>
+            <p class="mb-0">Add a new shelf to organize your books.</p>
+        </div>
+        <button class="btn btn-primary mt-5">View Shelves</button>
+    </div>
+
+    <div class="mt-2">
+        <div style="width: 100%; max-width: 400px;">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                    {% for error in form.name.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                    {% endfor%}
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    {% for error in form.description.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                    {% endfor%}
+                </div>
+                n <button type="submit" class="btn btn-primary w-100">Add Shelf</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock body %}

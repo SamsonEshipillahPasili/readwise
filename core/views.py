@@ -20,6 +20,9 @@ class ShelvesTemplateView(LoginRequiredMixin, TemplateView):
         ctx['menu'] = 'shelves'
         return ctx
 
+class AddShelfView(LoginRequiredMixin, TemplateView):
+    template_name = 'core/add_shelf.html'
+
 class WishlistTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'core/wishlist.html'
 
