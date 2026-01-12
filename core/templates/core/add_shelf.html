@@ -7,7 +7,7 @@
             <h1>Add Shelf</h1>
             <p class="mb-0">Add a new shelf to organize your books.</p>
         </div>
-        <button class="btn btn-primary mt-5">View Shelves</button>
+        <a class="btn btn-primary mt-5" href="{% url 'core:shelves' %}">View Shelves</a>
     </div>
 
     <div class="mt-2">
@@ -28,7 +28,7 @@
                         <small class="text-danger">{{ error }}</small>
                     {% endfor%}
                 </div>
-                n <button type="submit" class="btn btn-primary w-100">Add Shelf</button>
+                <button type="submit" class="btn btn-primary w-100">Add Shelf</button>
             </form>
         </div>
     </div>
