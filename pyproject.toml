@@ -6,4 +6,5 @@ dependencies = [
     "django>=6.0",
     "faker",
     "psycopg2-binary>=2.9.11",
+    "python-decouple>=3.8",
 ]

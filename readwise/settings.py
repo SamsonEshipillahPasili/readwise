@@ -2,6 +2,8 @@ from pathlib import Path
 
 from django.urls import reverse_lazy
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -13,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-30#m)-y@p9&jm#xv@5&$)xxjk=k!8v2bkj=9t6m)%3)e*0695s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -67,16 +69,24 @@ WSGI_APPLICATION = 'readwise.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'prod': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'readwise_db',
         'USER': 'readwise',
         'PASSWORD': 'SuperSecret123',
         'HOST': 'db',
         'PORT': '5432'
+    },
+    'dev': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+if DEBUG:
+    DATABASES['default'] = DATABASES['dev']
+else:
+    DATABASES['default'] = DATABASES['prod']
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
